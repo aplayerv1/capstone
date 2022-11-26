@@ -1,3 +1,4 @@
+package McShop;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class DBConnection {
  System.out.println("MySQL JDBC Driver Registered!");
  // get hold of the DriverManager
  connection = DriverManager.getConnection(
- "jdbc:mysql://10.10.1.1:3306/McShop?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+ "jdbc:mysql://10.10.1.3:3306/McShop?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
  "root", "root");
  } catch (ClassNotFoundException e) {
  System.out.println("Where is your MySQL JDBC Driver?");

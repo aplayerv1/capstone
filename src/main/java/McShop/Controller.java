@@ -1,4 +1,6 @@
+package McShop;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,19 +25,25 @@ public class Controller extends HttpServlet {
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		 response.setContentType("text/html");  
+	     PrintWriter out=response.getWriter();  
+	     
 		
+	    String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		System.out.println(""+username);
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
 		
 		try {
 			if (valuser.validate(user) ) {
-				response.sendRedirect("");
+				//response.sendRedirect("main.jsp");
+				session.setAttribute("name", username);
+				response.sendRedirect("main.jsp?name=" + username.toString());				
 			}else {
-				HttpSession session = request.getSession();
+				 request.getRequestDispatcher("index.jsp").include(request, response);  
 			}
 			
 		}catch(ClassNotFoundException e){
